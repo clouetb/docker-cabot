@@ -29,7 +29,7 @@ RUN npm install -g \
 
 RUN pip install --upgrade pip wheel twine
 # Gevent install is super slow...cache it early
-RUN pip install gevent==1.2.1
+RUN pip install gevent
 
 ARG CABOT_VERSION
 RUN git clone https://github.com/clouetb/cabot /code
@@ -62,7 +62,7 @@ RUN apk add --no-cache \
         git
 
 # Gevent install is super slow...cache it early
-RUN pip install gevent==1.2.1
+RUN pip install gevent
 COPY --from=builder /code/dist/*.whl /tmp/
 RUN pip install --no-cache-dir --disable-pip-version-check /tmp/*.whl
 RUN rm -rf /tmp
