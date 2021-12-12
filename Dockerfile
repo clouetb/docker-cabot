@@ -7,7 +7,12 @@ WORKDIR /code
 
 RUN apk add --no-cache \
         python3-dev \
-        py-pip \
+        py3-pip \
+        cargo \
+        build-base \
+        autoconf \
+        automake \
+        py3-cryptography \
         postgresql-dev \
         gcc \
         musl-dev \
@@ -41,12 +46,20 @@ FROM python:alpine
 
 RUN apk add --no-cache \
         python3-dev \
+        py3-pip \
+        cargo \
+        build-base \
+        autoconf \
+        automake \
+        py3-cryptography \
         postgresql-dev \
         gcc \
         musl-dev \
         libffi-dev \
         openldap-dev \
-        ca-certificates
+        ca-certificates \
+        bash \
+        git
 
 # Gevent install is super slow...cache it early
 RUN pip install gevent==1.2.1
