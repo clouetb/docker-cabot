@@ -16,6 +16,8 @@ RUN apk add --no-cache \
         postgresql-dev \
         gcc \
         musl-dev \
+        curl-dev \
+        libcurl \
         libffi-dev \
         openldap-dev \
         ca-certificates \
@@ -55,6 +57,8 @@ RUN apk add --no-cache \
         postgresql-dev \
         gcc \
         musl-dev \
+        curl-dev \
+        libcurl \
         libffi-dev \
         openldap-dev \
         ca-certificates \
