@@ -6,7 +6,7 @@ RUN mkdir /code
 WORKDIR /code
 
 RUN apk add --no-cache \
-        python-dev \
+        python3-dev \
         py-pip \
         postgresql-dev \
         gcc \
@@ -40,7 +40,7 @@ RUN python setup.py sdist bdist_wheel
 FROM python:alpine
 
 RUN apk add --no-cache \
-        python-dev \
+        python3-dev \
         postgresql-dev \
         gcc \
         musl-dev \
@@ -55,7 +55,7 @@ RUN pip install --no-cache-dir --disable-pip-version-check /tmp/*.whl
 RUN rm -rf /tmp
 
 RUN apk del \
-        python-dev \
+        python3-dev \
         gcc \
         musl-dev \
         libffi-dev \
