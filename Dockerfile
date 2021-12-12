@@ -40,9 +40,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install --no-cache-dir -r requirements-dev.txt
 RUN pip install --no-cache-dir -r requirements-plugins.txt
 
-RUN python manage.py collectstatic --noinput
-RUN python manage.py compress
-RUN python setup.py sdist bdist_wheel
+RUN python3 manage.py collectstatic --noinput
+RUN python3 manage.py compress
+RUN python3 setup.py sdist bdist_wheel
 
 FROM python:alpine
 
