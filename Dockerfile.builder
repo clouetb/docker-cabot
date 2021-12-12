@@ -47,8 +47,16 @@ RUN pip install --no-cache-dir -r requirements-plugins.txt
 
 RUN apk del \
         python3-dev \
+        py3-pip \
+        cargo \
+        build-base \
+        autoconf \
+        automake \
+        py3-cryptography \
+        postgresql-dev \
         gcc \
         musl-dev \
+        curl-dev \
         libffi-dev \
         openldap-dev
 
