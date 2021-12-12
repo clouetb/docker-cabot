@@ -1,4 +1,4 @@
-FROM node:4-alpine as builder
+FROM node:alpine as builder
 
 ENV PYTHONUNBUFFERED 1
 RUN mkdir /code
@@ -27,7 +27,7 @@ RUN pip install --upgrade pip wheel twine
 RUN pip install gevent==1.2.1
 
 ARG CABOT_VERSION
-RUN git clone --branch=${CABOT_VERSION} https://github.com/arachnys/cabot /code
+RUN git clone https://github.com/clouetb/cabot /code
 
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install --no-cache-dir -r requirements-dev.txt
@@ -37,7 +37,7 @@ RUN python manage.py collectstatic --noinput
 RUN python manage.py compress
 RUN python setup.py sdist bdist_wheel
 
-FROM python:2-alpine
+FROM python:alpine
 
 RUN apk add --no-cache \
         python-dev \
