@@ -41,7 +41,6 @@ RUN curl https://raw.githubusercontent.com/clouetb/cabot/master/requirements-plu
 
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install --no-cache-dir -r requirements-dev.txt
-RUN pip install --no-cache-dir -r requirements-plugins.txt
 
 RUN apk del \
         python3-dev \
@@ -50,6 +49,6 @@ RUN apk del \
         libffi-dev \
         openldap-dev
 
-RUN rm requirements.txt requirements-dev.txt requirements-plugins.txt
+RUN rm requirements.txt requirements-dev.txt
 ENTRYPOINT []
 CMD ["/bin/sh"]

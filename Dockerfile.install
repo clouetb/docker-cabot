@@ -2,6 +2,8 @@ FROM clouetb/builder
 
 RUN git clone https://github.com/clouetb/cabot /code
 
+RUN pip install --no-cache-dir -r requirements-plugins.txt
+
 RUN python3 manage.py collectstatic --noinput
 RUN python3 manage.py compress
 RUN python3 manage.py makemigrations
