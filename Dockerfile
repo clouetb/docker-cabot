@@ -18,7 +18,7 @@ RUN apk add --no-cache \
         git
 
 RUN npm install -g \
-        --registry http://registry.npmjs.org/ \
+        --registry https://registry.npmjs.org/ \
         coffee-script \
         less@1.3
 
