@@ -44,17 +44,16 @@ RUN pip install --no-cache-dir -r requirements-dev.txt
 RUN pip install --no-cache-dir -r requirements-plugins.txt
 
 RUN apk del \
-        python3-dev \
         cargo \
         build-base \
         autoconf \
         automake \
-        postgresql-dev \
         gcc \
         musl-dev \
         curl-dev \
         libffi-dev \
         openldap-dev
 
+RUN rm requirements.txt requirements-dev.txt requirements-plugins.txt
 ENTRYPOINT []
 CMD ["/bin/sh"]
