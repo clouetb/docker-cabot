@@ -2,7 +2,7 @@ version: "2.1"
 
 services:
   base:
-    image: cabotapp/cabot:${CABOT_VERSION}
+    image: clouetb/cabot:latest
     env_file:
       - conf/default.env
       - conf/${CABOT_ENVIRONMENT}.env
