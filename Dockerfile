@@ -24,10 +24,7 @@ RUN apk add --no-cache \
         bash \
         git
 
-RUN npm install -g \
-        --registry https://registry.npmjs.org/ \
-        coffee-script \
-        less@1.3
+RUN npm install -g coffeescript less
 
 RUN pip install --upgrade pip wheel twine
 # Gevent install is super slow...cache it early
