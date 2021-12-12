@@ -15,6 +15,7 @@ RUN apk add --no-cache \
         py3-cryptography \
         postgresql-dev \
         gcc \
+        curl \
         musl-dev \
         curl-dev \
         libcurl \
