@@ -44,13 +44,9 @@ RUN pip install --no-cache-dir -r requirements-dev.txt
 RUN pip install --no-cache-dir -r requirements-plugins.txt
 
 RUN apk del \
-        cargo \
-        build-base \
-        autoconf \
-        automake \
+        python3-dev \
         gcc \
         musl-dev \
-        curl-dev \
         libffi-dev \
         openldap-dev
 
