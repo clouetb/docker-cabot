@@ -5,7 +5,7 @@ services:
     extends:
       file: docker-compose-base.yml
       service: base
-    command: sh -c "cabot migrate && gunicorn cabot.wsgi:application -b 0.0.0.0:5000 --workers=5"
+    command: sh -c "python3 manage.py migrate && gunicorn cabot.wsgi:application -b 0.0.0.0:5000 --workers=5"
     ports:
       - '127.0.0.1:5000:5000'
     depends_on:
@@ -36,7 +36,7 @@ services:
     restart: always
 
   postgres:
-    image: postgres:9.6-alpine
+    image: postgres:alpine
     volumes:
       - data:/var/lib/postgresql/data
     environment:
@@ -44,7 +44,7 @@ services:
     restart: always
 
   rabbitmq:
-    image: rabbitmq:3.6-alpine
+    image: rabbitmq:alpine
     restart: always
 
 volumes:
