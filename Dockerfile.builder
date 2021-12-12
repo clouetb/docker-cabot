@@ -29,17 +29,14 @@ RUN npm install -g coffeescript less
 
 RUN pip install --upgrade pip wheel twine
 
-RUN curl --request GET -sL \
---url 'https://raw.githubusercontent.com/clouetb/cabot/master/requirements.txt'\
---output 'requirements.txt'
+RUN curl https://raw.githubusercontent.com/clouetb/cabot/master/requirements.txt \
+    --output 'requirements.txt'
 
-RUN curl --request GET -sL \
---url 'https://raw.githubusercontent.com/clouetb/cabot/master/requirements-dev.txt'\
---output 'requirements-dev.txt'
+RUN curl https://raw.githubusercontent.com/clouetb/cabot/master/requirements-dev.txt \
+    --output 'requirements-dev.txt'
 
-RUN curl --request GET -sL \
---url 'https://raw.githubusercontent.com/clouetb/cabot/master/requirements-plugins.txt'\
---output 'requirements-plugins.txt'
+RUN curl https://raw.githubusercontent.com/clouetb/cabot/master/requirements-plugins.txt \
+    --output 'requirements-plugins.txt'
 
 
 RUN pip install --no-cache-dir -r requirements.txt
