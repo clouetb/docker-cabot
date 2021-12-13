@@ -36,10 +36,6 @@ RUN curl https://raw.githubusercontent.com/clouetb/cabot/master/requirements.txt
 RUN curl https://raw.githubusercontent.com/clouetb/cabot/master/requirements-dev.txt \
     --output 'requirements-dev.txt'
 
-RUN curl https://raw.githubusercontent.com/clouetb/cabot/master/requirements-plugins.txt \
-    --output 'requirements-plugins.txt'
-
-
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install --no-cache-dir -r requirements-dev.txt
 
@@ -51,5 +47,6 @@ RUN apk del \
         openldap-dev
 
 RUN rm requirements.txt requirements-dev.txt
+
 ENTRYPOINT []
 CMD ["/bin/sh"]
