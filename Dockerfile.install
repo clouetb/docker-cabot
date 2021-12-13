@@ -4,9 +4,12 @@ RUN git clone https://github.com/clouetb/cabot /code
 
 RUN pip install --no-cache-dir -r requirements-plugins.txt
 
-RUN python3 manage.py collectstatic --noinput
-RUN python3 manage.py compress
-RUN python3 manage.py makemigrations
+RUN find /usr/lib/python3.9/site-packages/cabot_alert_* -path "**/migrations/*.py" -not -name "__init__.py" -delete
+RUN find /code -path "**/migrations/*.py" -not -name "__init__.py" -delete
+
+RUN django-admin collectstatic --pythonpath /code --settings cabot.settings
+RUN django-admin compress --pythonpath /code --settings cabot.settings
+RUN django-admin makemigrations --pythonpath /code --settings cabot.settings
 
 ENTRYPOINT []
 CMD ["/bin/sh"]
