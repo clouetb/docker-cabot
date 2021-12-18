@@ -21,7 +21,7 @@ RUN apk add --no-cache \
         curl-dev \
         libcurl \
         libffi-dev \
-        nmap \
+        nmap-nping \
         openldap-dev \
         ca-certificates \
         bash \
