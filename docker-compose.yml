@@ -17,7 +17,7 @@ services:
     extends:
       file: docker-compose-base.yml
       service: base
-    command: celery -A cabot worker -E -P gevent
+    command: celery -A cabot worker
     depends_on:
       - web
       - postgres
@@ -28,7 +28,7 @@ services:
     extends:
       file: docker-compose-base.yml
       service: base
-    command: celery -A cabot beat -P gevent
+    command: celery -A cabot beat
     depends_on:
       - web
       - postgres
