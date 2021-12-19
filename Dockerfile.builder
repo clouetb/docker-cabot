@@ -42,9 +42,18 @@ RUN pip install --no-cache-dir -r requirements-dev.txt
 
 RUN apk del \
         python3-dev \
-        gcc \
         musl-dev \
         libffi-dev \
+        musl-dev \
+        curl-dev \
+        libffi-dev \
+        postgresql-dev \
+        python3-dev \
+        gcc \
+        cargo \
+        build-base \
+        autoconf \
+        automake \
         openldap-dev
 
 RUN rm requirements.txt requirements-dev.txt
