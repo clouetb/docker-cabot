@@ -5,7 +5,7 @@ services:
     extends:
       file: docker-compose-base.yml
       service: base
-    command: sh -c "git pull && pip install --no-cache-dir git+https://github.com/clouetb/cabot-check-nping.git@main#egg=cabot-check-nping && django-admin makemigrations --pythonpath /code --settings cabot.settings -v 3 && django-admin migrate --pythonpath /code --settings cabot.settings -v 3 && IS_WEBSERVER=1 gunicorn cabot.wsgi:application -b 0.0.0.0:5000 --workers=5"
+    command: sh -c "git pull && pip install --no-cache-dir git+https://github.com/clouetb/cabot-check-nping.git@main#egg=cabot-check-nping && django-admin makemigrations --pythonpath /code --settings cabot.settings -v 3 && django-admin migrate --pythonpath /code --settings cabot.settings -v 3 && IS_WEBSERVER=1 gunicorn cabot.wsgi:application -b 0.0.0.0:5000 --log-level debug --workers=5"
     ports:
       - '127.0.0.1:5000:5000'
     depends_on:
