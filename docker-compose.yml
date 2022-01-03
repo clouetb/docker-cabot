@@ -17,7 +17,7 @@ services:
     extends:
       file: docker-compose-base.yml
       service: base
-    command: celery -A cabot worker
+    command: celery -A cabot worker -n FR-PROXAD-20051003-78.203.46.76
     depends_on:
       - web
       - postgres
@@ -35,6 +35,16 @@ services:
       - rabbitmq
     restart: always
 
+  events:
+    extends: 
+      file: docker-compose-base.yml
+      service: base
+    command: celery -A cabot events -l info --camera django_celery_monitor.camera.Camera
+    depends_on:
+      - postgres
+      - rabbitmq
+    restart: always
+
   postgres:
     image: postgres:alpine
     volumes:
@@ -44,8 +54,15 @@ services:
     restart: always
 
   rabbitmq:
-    image: rabbitmq:alpine
+    image: rabbitmq:3-management
     restart: always
+    volumes:
+      - ../rabbitmq_data:/var/lib/rabbitmq:rw   
+      - ../definitions.json:/opt/definitions.json:ro
+      - ../rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
+    ports:
+      - '25672:5672'
+      - '15672:15672'
 
 volumes:
   data:
