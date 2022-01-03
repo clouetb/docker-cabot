@@ -18,25 +18,11 @@ services:
       file: docker-compose-base.yml
       service: base
     command: celery -A cabot worker -n FR-PROXAD-20051003-78.203.46.76
-<<<<<<< HEAD
-=======
     depends_on:
       - web
       - postgres
       - rabbitmq
       - events
-    restart: always
-
-  events:
-    extends:
-      file: docker-compose-base.yml
-      service: base
-    command: celery -A cabot events --camera django_celery_monitor.camera.Camera
->>>>>>> refs/remotes/origin/master
-    depends_on:
-      - web
-      - postgres
-      - rabbitmq
     restart: always
 
   beat:
