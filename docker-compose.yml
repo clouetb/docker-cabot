@@ -32,7 +32,7 @@ services:
     extends:
       file: docker-compose-base.yml
       service: base
-    command: celery -A cabot beat
+    command: celery -A cabot beat --scheduler django_celery_beat.schedulers:DatabaseScheduler
     depends_on:
       - web
       - postgres
