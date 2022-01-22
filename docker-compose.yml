@@ -6,7 +6,8 @@ services:
       file: docker-compose-base.yml
       service: base
     command: >
-      sh -c "git pull && django-admin makemigrations --pythonpath /code --settings cabot.settings -v 3 &&
+      sh -c "git pull &&
+      yes | django-admin makemigrations --merge --pythonpath /code --settings cabot.settings -v 3 &&
       django-admin migrate --pythonpath /code --settings cabot.settings -v 3 &&
       gunicorn cabot.wsgi:application -b 0.0.0.0:5000 --workers=5"
     ports:
@@ -20,7 +21,10 @@ services:
     extends:
       file: docker-compose-base.yml
       service: base
-    command: celery -A cabot worker -n FR-PROXAD-20051003-78.203.46.76
+    command: >
+      celery -A cabot worker
+      --hostname=FR-PROXAD-20051003-78.203.46.76
+      --queues=celery,FR-PROXAD-20051003-78.203.46.76
     depends_on:
       - web
       - postgres
@@ -32,7 +36,9 @@ services:
     extends:
       file: docker-compose-base.yml
       service: base
-    command: celery -A cabot beat --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    command: >
+      celery -A cabot beat
+      --scheduler django_celery_beat.schedulers:DatabaseScheduler
     depends_on:
       - web
       - postgres
@@ -43,7 +49,9 @@ services:
     extends: 
       file: docker-compose-base.yml
       service: base
-    command: celery -A cabot events -l info --camera django_celery_monitor.camera.Camera
+    command: >
+      celery -A cabot events
+      --camera django_celery_monitor.camera.Camera
     depends_on:
       - postgres
       - rabbitmq
@@ -57,7 +65,7 @@ services:
       - ./conf/production.env
     restart: always
     ports:
-      - '25432:5432'
+      - 25432:5432
 
   rabbitmq:
     image: rabbitmq:3-management
