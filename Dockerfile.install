@@ -6,7 +6,6 @@ RUN pip install --no-cache-dir -r requirements-plugins.txt
 
 RUN django-admin collectstatic --pythonpath /code --settings cabot.settings
 RUN django-admin compress --pythonpath /code --settings cabot.settings
-RUN django-admin makemigrations --pythonpath /code --settings cabot.settings -v 3
 
 ENTRYPOINT []
 CMD ["/bin/sh"]
