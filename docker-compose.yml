@@ -7,7 +7,7 @@ services:
       service: base
     command: >
       sh -c "git pull &&
-      yes | django-admin makemigrations --merge --pythonpath /code --settings cabot.settings -v 3 &&
+      yes | django-admin makemigrations --pythonpath /code --settings cabot.settings -v 3 &&
       django-admin migrate --pythonpath /code --settings cabot.settings -v 3 &&
       gunicorn cabot.wsgi:application -b 0.0.0.0:5000 --workers=5"
     ports:
